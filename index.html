@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Student Registration System — register, view, edit, and delete student records with validation and localStorage persistence."
+    />
+    <meta name="author" content="Your Name" />
+    <title>Student Registration System</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <h1 class="site-title text-balance">Student Registration System</h1>
+        <p class="site-subtitle text-pretty">
+          Register students with name, ID, email, and contact number. View, edit, and delete records with data saved in your browser.
+        </p>
+
+        <nav class="nav">
+          <a href="#register" class="nav-link">Register</a>
+          <a href="#records" class="nav-link">Records</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container main-content">
+      <section id="register" aria-labelledby="register-heading" class="card">
+        <h2 id="register-heading">Register a Student</h2>
+        <p class="muted">All fields are required.</p>
+
+        <form id="studentForm" novalidate>
+          <div class="form-grid">
+             Student Name: 
+            <div class="form-field">
+              <label for="studentName">Student Name</label>
+              <input
+                id="studentName"
+                name="studentName"
+                type="text"
+                inputmode="text"
+                placeholder="e.g., Ayesha Khan"
+                required
+                pattern="^[A-Za-z\s]{2,}$"
+                aria-describedby="nameHelp"
+              />
+              <small id="nameHelp" class="help">
+              </small>
+            </div>
+
+             Student ID:
+            <div class="form-field">
+              <label for="studentId">Student ID</label>
+              <input
+                id="studentId"
+                name="studentId"
+                type="text"
+                inputmode="numeric"
+                placeholder="e.g., 1001"
+                required
+                pattern="^\d+$"
+                aria-describedby="idHelp"
+              />
+              <small id="idHelp" class="help">
+              </small>
+            </div>
+
+             Email:
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="e.g., ayesha@example.com"
+                required
+                aria-describedby="emailHelp"
+              />
+              <small id="emailHelp" class="help">
+              </small>
+            </div>
+
+             Contact Number: 
+            <div class="form-field">
+              <label for="contact">Contact Number</label>
+              <input
+                id="contact"
+                name="contact"
+                type="text"
+                inputmode="numeric"
+                placeholder="e.g., 9876543210"
+                required
+                minlength="10"
+                pattern="^\d{10,}$"
+                aria-describedby="contactHelp"
+              />
+              <small id="contactHelp" class="help">
+              </small>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button type="submit" id="submitBtn" class="btn btn-primary">
+              Add Student
+            </button>
+            <button type="button" id="resetBtn" class="btn btn-muted">
+              Reset
+            </button>
+          </div>
+
+          <input type="hidden" id="editingId" value="" />
+        </form>
+      </section>
+
+      <section id="records" aria-labelledby="records-heading" class="card">
+        <div class="records-header">
+          <h2 id="records-heading">Registered Students</h2>
+          <div class="count muted" aria-live="polite">
+            <span id="recordCount">0</span> record(s)
+          </div>
+        </div>
+
+        <div id="tableWrapper" class="table-wrapper" aria-live="polite" aria-busy="false">
+          <table class="data-table" aria-describedby="recordsNote">
+            <thead>
+              <tr>
+                <th scope="col">Student Name</th>
+                <th scope="col">Student ID</th>
+                <th scope="col">Email</th>
+                <th scope="col">Contact No.</th>
+                <th scope="col" class="actions-col">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="recordsBody">
+            </tbody>
+          </table>
+        </div>
+
+        <p id="recordsNote" class="muted">
+          The list becomes scrollable automatically when there are many records.
+        </p>
+        <p id="emptyState" class="empty-state" role="status">No student records yet. Add your first student above.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer container">
+      <small>© <span id="year"></span> Student Registration System. All rights reserved.</small>
+    </footer>
+
+    <script src="./script.js" defer></script>
+  </body>
+</html>
